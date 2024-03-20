@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QSlider, QLCDNumber, QPushButton, QLabel, QTextBrowser
+from PyQt5.QtWidgets import QApplication, QSlider, QLCDNumber, QPushButton, QLabel, QPlainTextEdit
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5 import uic
@@ -47,6 +47,7 @@ class Worker(QThread):
             self.client.setValue('Vehicle.Speed', str(self.speed), 'value')
         except Exception as e:
             self.error_occurred.emit(str(e))
+
 class MainWindow(Base, Form):
     def __init__(self):
         super().__init__()
@@ -68,30 +69,30 @@ class MainWindow(Base, Form):
         
         self.ProfilePic = self.findChild(QLabel, 'ProfilePic')
         self.SwitchPP = self.findChild(QPushButton, 'SwitchPP')
-        self.OutputBox = self.findChild(QTextBrowser, 'OutputBox')
+        self.OutputBox = self.findChild(QPlainTextEdit, 'OutputBox')
+        self.OutputBox.appendPlainText("Output Box")
 
         self.SpeedSlider.valueChanged.connect(self.changeValue)
         self.SwitchPP.clicked.connect(self.changePP)
-
 
         try:
             self.client = kc.KuksaClientThread(config)
             self.client.start()
         except Exception as e:
-            print(f"Error: {e}")
-            self.OutputBox.append("------------Error!!----------")
+            #print(f"Error: {e}")
+            
+            self.OutputBox.appendPlainText(e).setStyleSheet("color: red")
 
     def changeValue(self, value):
-        speed = int(self.SpeedSlider.value())
+        speed = int(value)
         self.worker = Worker(self.client, speed)
         self.worker.error_occurred.connect(self.handle_error)
         self.worker.start()
 
     def handle_error(self, error_message):
         print("Error!! self.client not configured properly.")
-        self.OutputBox.append("------------Error!!----------")
-        self.OutputBox.append(error_message)
         self.lcdNumber.display(int(self.client.getValue('Vehicle.Speed','value')))
+        self.OutputBox.appendPlainText(error_message)
 
 
     def changePP(self):

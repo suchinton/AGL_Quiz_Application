@@ -202,6 +202,7 @@
  </widget>
  <resources>
   <include location="AppRes.qrc"/>
+  <include location="../../.designer/backup/AppRes.qrc"/>
  </resources>
  <connections/>
 </ui>
