@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QApplication, QSlider, QLCDNumber, QPushButton, QLab
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtGui import QBitmap, QPainter, QColor
 from PyQt5 import uic
+import json
 
 import kuksa_client as kc
 
@@ -48,7 +49,9 @@ class MainWindow(Base, Form):
         try:
             self.client.setValue('Vehicle.Speed',str(speed),'value')
             print(f"Feeding Vehicle.Speed to {speed}")
-            self.lcdNumber.display(int(self.client.getValue('Vehicle.Speed','value')))
+            response = json.loads(self.client.getValue('Vehicle.Speed'))
+            vs_val = int(response['value']['value'])
+            self.lcdNumber.display(vs_val)
         except:
             print("Error!! kuksa_client not configured properly.")
 
