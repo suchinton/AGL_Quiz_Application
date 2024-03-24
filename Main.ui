@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1036</width>
     <height>600</height>
    </rect>
   </property>
@@ -14,9 +14,90 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <spacer name="horizontalSpacer_2">
+   <property name="styleSheet">
+    <string notr="true">*{
+	border: none;
+	border-radius: 8px;
+	background-color: transparent;
+	background: none;
+	padding: 0;
+	margin: 0;
+	color: #fff;
+}
+
+#centralwidget{
+	background-color: #131313 ; /* black */
+}
+
+QPushButton{
+	background-color: #6C6C85 ; /* pastel purple */
+	text-align: center;
+	padding: 5px 5px;
+	border-radius: 10px;
+}
+
+*{
+	border: none;
+	background-color: transparent;
+	background: none; 
+	padding: 0;
+	margin: 0;
+	color: #fff;
+}
+
+#scrollAreaWidgetContents{
+	background-color: #131313 ; /* black */
+}
+
+#centralwidget{
+	background-color: #131313 ; /* black */
+}
+
+QPushButton{
+	background-color: #6C6C85 ; /* pastel purple */
+	padding: 5px 10px;
+	border-radius: 10px;
+}
+
+QPushButton:pressed {
+    background-color: #4BD7D6 ; /* light blue */
+}
+
+QSlider::groove:horizontal {
+    background-color: #131313 ; /* black */
+    border: 1px solid #6C6C85 ; /* pastel purple */
+    height: 28px;
+    border-radius: 8px;
+}
+
+QSlider::sub-page:horizontal {
+    background-color: #4BD7D6 ; /* light blue */
+    height: 28px;
+    border-radius: 5px;
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+        stop:0 #eee, stop:1 #ccc);
+    border: 1px solid #777;
+    width: 20px;
+    margin-top: -2px;
+    margin-bottom: -2px;
+    border-radius: 8px;
+}
+
+QLCDNumber {
+	background: #6C6C85 ; /* pastel purple */
+	border-radius: 10px;
+}
+
+#ProfilePic{
+	border-radius: 30px;
+}</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="4">
+     <spacer name="horizontalSpacer_3">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -31,7 +112,85 @@
       </property>
      </spacer>
     </item>
-    <item>
+    <item row="1" column="2">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Expanding</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="3">
+     <widget class="QWidget" name="widget_2" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item alignment="Qt::AlignTop">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Vehicle Speed (Kuksa API)</string>
+         </property>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignTop">
+        <widget class="QLCDNumber" name="lcdNumber">
+         <property name="minimumSize">
+          <size>
+           <width>154</width>
+           <height>180</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSlider" name="SpeedSlider">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="1" column="1">
      <widget class="QWidget" name="widget" native="true">
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
@@ -50,11 +209,11 @@
        <item alignment="Qt::AlignLeft|Qt::AlignTop">
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Hello! Click the button </string>
+          <string>Click the button to switch Pic.</string>
          </property>
         </widget>
        </item>
-       <item alignment="Qt::AlignTop">
+       <item alignment="Qt::AlignHCenter|Qt::AlignTop">
         <widget class="QWidget" name="widget_3" native="true">
          <property name="minimumSize">
           <size>
@@ -108,8 +267,8 @@
       </layout>
      </widget>
     </item>
-    <item>
-     <spacer name="horizontalSpacer">
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer_2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
@@ -124,77 +283,19 @@
       </property>
      </spacer>
     </item>
-    <item>
-     <widget class="QWidget" name="widget_2" native="true">
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <spacer name="verticalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item alignment="Qt::AlignTop">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Vehicle Speed (Kuksa API)</string>
-         </property>
-        </widget>
-       </item>
-       <item alignment="Qt::AlignTop">
-        <widget class="QLCDNumber" name="lcdNumber">
-         <property name="minimumSize">
-          <size>
-           <width>154</width>
-           <height>154</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSlider" name="SpeedSlider">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_4">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
+    <item row="0" column="1" colspan="3" alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="label_3">
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Hello! This is Suchinton's Submission for the AGL's GSoC '24 Quiz</string>
+      </property>
      </widget>
-    </item>
-    <item>
-     <spacer name="horizontalSpacer_3">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Expanding</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
     </item>
    </layout>
   </widget>
